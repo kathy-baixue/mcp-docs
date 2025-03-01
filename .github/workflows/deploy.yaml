@@ -1,0 +1,33 @@
+name: deploy
+on:
+  push:
+    tags:
+      - "v**"
+#    branches:
+#      - 'main'
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Web
+        run: |
+          node -v
+          npm install -g pnpm
+          pnpm i
+          npm run build
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Add SSH key to known hosts
+        run: |
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Package
+        run: |
+          tar -zczf build.tar.gz build
+      - name: Deploy
+        run: |
+          scp -r build.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "tar -zxvf ${{secrets.SSH_PATH}}/build.tar.gz -C ${{secrets.SSH_PATH}}"
