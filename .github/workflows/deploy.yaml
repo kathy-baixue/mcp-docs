@@ -26,7 +26,8 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       - name: Package
         run: |
-          tar -zczf build.tar.gz build
+          cd build
+          tar -zcvf build.tar.gz *
       - name: Deploy
         run: |
           scp -r build.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
