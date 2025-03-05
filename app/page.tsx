@@ -29,10 +29,10 @@ export default function Home() {
                 Compatible Tools
               </Link>
               <Link
-                href="#docs"
+                href="/docs"
                 className="flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >
-                Documentation
+                Docs
               </Link>
             </nav>
           </div>
@@ -289,7 +289,7 @@ export default function Home() {
         </section>
 
         {/* Documentation Section */}
-        <section id="docs" className="w-full py-12 md:py-24 lg:py-32 gradient-bg">
+        <section id="docs" className="w-full py-12 md:py-24 lg:py-32 gradient-bg" >
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
