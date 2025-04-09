@@ -1,5 +1,200 @@
 ---
-title: Claude 桌面用户
-description: 快速开始 - Claude 桌面用户
+title: Claude 桌面应用用户
 ---
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
+面向 Claude 桌面应用（Claude desktop） 用户
+
+使用 Claude for Desktop 中的预构建服务器开始入门。
+
+在本教程中，您将扩展 [Claude for Desktop](https://claude.ai/download)，使其可以从您计算机的文件系统中读取、写入新文件、移动文件，甚至搜索文件。
+![ImaImageZoomge](/quickstart-filesystem.png)
+别担心——在执行这些操作之前，它会先征得您的同意！
+## 1. 下载 Claude for Desktop ##
+首先下载 Claude for Desktop，选择 macOS 或 Windows。（Claude for Desktop 尚未支持 Linux。）
+
+按照安装说明进行操作。
+
+如果您已经有了 Claude for Desktop，请通过单击您计算机上的 Claude 菜单并选择“检查更新…”来确保它已更新到最新版本。
+
+<Accordions type="single">
+  <Accordion title="为什么选择 Claude for Desktop 而不是 Claude.ai？">
+  因为服务器是在本地运行的，MCP 当前只支持桌面主机。远程主机功能正在开发中。
+  </Accordion>
+</Accordions>
+## 2. 添加文件系统 MCP 服务器 ##
+为了添加文件系统功能，我们将为 Claude for Desktop 安装一个预构建的 [Filesystem MCP Server](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)。这是由 Anthropic 和社区创建的数十个[服务器](https://github.com/modelcontextprotocol/servers/tree/main)之一。
+
+开始操作：
+
+打开 Claude 菜单，选择“设置（Settings）”。
+请注意，这里的设置不是应用窗口中的“Claude 账户设置（Claude Account Settings）”。
+
+在 Mac 上，界面如下所示：
+![ImaImageZoomge](/quickstart-menu.png)
+在“设置（Settings）”操作页面上，点击左侧栏中的“开发者（Developer）”，然后点击“编辑配置（Edit Config）”：
+![ImaImageZoomge](/quickstart-developer.png)
+此操作将在以下位置创建一个配置文件（如果文件还不存在），并显示在您的文件系统中。
+- macOS: ~/Library/Application Support/Claude/claude_desktop_config.json
+- Windows: %APPDATA%\Claude\claude_desktop_config.json
+
+在任意文本编辑器中打开配置文件，将内容替换为以下内容：
+<Tabs items={['MacOS/Linux', 'Windows']}>
+  <Tab value="MacOS/Linux">
+  ```js
+  {
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/username/Desktop",
+        "/Users/username/Downloads"
+      ]
+    }
+  }
+}
+  ```
+  </Tab>
+  <Tab value="Windows">
+  ```js
+  {
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\username\\Desktop",
+        "C:\\Users\\username\\Downloads"
+      ]
+    }
+  }
+}
+  ```
+  </Tab>
+</Tabs>
+确保将 username 替换为您计算机的用户名。 这些路径应指向您希望 Claude 能够访问和修改的有效目录。 默认设置为桌面Desktop和下载Downloads，但您也可以添加更多路径。
+
+您还需要在您的计算机上安装 Node.js 才能使其正常运行。 要验证是否安装了 Node，请在您的计算机上打开命令行。
+
+- 在 macOS 上，从您的“应用程序”文件夹中打开“终端”
+- 在 Windows 上，按 Windows + R，键入 “cmd”，然后按 Enter
+进入命令行后，通过输入以下命令来验证您是否安装了 Node：
+```js
+node --version
+```
+如果收到“command not found”或“node is not recognized”的错误消息，请从 [Node.js 官网](https://nodejs.org/) 下载并安装。
+<Callout  title="配置文件如何工作？" type="info">
+此配置文件告诉 Claude for Desktop 每次启动应用程序时需要启动哪些 MCP 服务器。在本例中，我们添加了一个名为“filesystem”的服务器，使用 Node 的 npx 命令来安装并运行 @modelcontextprotocol/server-filesystem。
+该服务器的更多描述请参见 [此处](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)，它将让您在 Claude for Desktop 中访问您的文件系统。
+</Callout>
+<Callout  title="命令权限" type="warn">
+Claude for Desktop 将以您的用户帐户权限运行配置文件中的命令，并访问您的本地文件。注意只有在理解并信任源代码的情况下才添加命令。
+</Callout>
+## 3. 重启Claude ##
+更新配置文件后，你需要重新启动 Claude for Desktop。
+
+重新启动后，你应该在输入框的右下角看到一个锤子图标：
+![ImaImageZoomge](/quickstart-hammer.png)
+点击锤子图标后，您应该能看到 Filesystem MCP Server 提供的工具：
+![ImaImageZoomge](/quickstart-tools.png)
+如果服务器未被 Claude for Desktop 识别，请参阅故障排查。
+## 4. 试一试 ##
+您现在可以与 Claude 对话，让它访问您的文件系统。它会根据需要调用相关工具。
+
+试试以下内容：
+
+- “能否写一首诗并保存到我的桌面上？”
+- “我的下载文件夹中有哪些与工作相关的文件？”
+- “能否将桌面上的所有图片移动到一个名为‘Images’的新文件夹中？”
+
+根据需要，Claude 将调用相关工具，并且会在执行操作前征求您的许可：
+
+![ImaImageZoomge](/quickstart-approve.png)
+## 故障排查 ##
+<Accordions type="multiple">
+  <Accordion title="服务器未显示在 Claude 中 / 锤子图标丢失">
+   1. 完全重新启动 Claude for Desktop
+   2. 检查你的 claude_desktop_config.json 文件的语法
+   3. 确保 claude_desktop_config.json 中包含的文件路径有效，并且它们是绝对路径而不是相对路径
+   4. 查看 logs 以查看 server 未连接的原因
+   5. 在你的命令行中，尝试手动运行 server（替换 username，就像你在 claude_desktop_config.json 中所做的那样），看看是否出现任何错误：
+   <Tabs items={['MacOS/Linux', 'Windows']}>
+  <Tab value="MacOS/Linux">
+    ```js
+    npx -y @modelcontextprotocol/server-filesystem /Users/username/Desktop /Users/username/Downloads
+    ```
+    </Tab>
+  <Tab value="Windows">
+  ```js
+  npx -y @modelcontextprotocol/server-filesystem C:\Users\username\Desktop C:\Users\username\Downloads
+  ```
+  </Tab>
+</Tabs>
+  </Accordion>
+    <Accordion title="从 Claude for Desktop 获取日志">
+    与 MCP 相关的 Claude.app 日志将写入以下日志文件：
+    - macOS: ~/Library/Logs/Claude
+    - Windows: %APPDATA%\Claude\logs
+    - mcp.log 将包含有关 MCP 连接和连接失败的常规日志记录。
+    - 命名为 mcp-server-SERVERNAME.log 的文件将包含来自特定服务器（该SERVERNAME）的错误 (stderr) 日志。
+
+你可以运行以下命令来列出最近的日志并跟踪任何新的日志（在 Windows 上，它将仅显示最近的日志）：
+   <Tabs items={['MacOS/Linux', 'Windows']}>
+  <Tab value="MacOS/Linux">
+    ```js
+    # 检查 Claude 的日志中是否有错误
+tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
+    ```
+    </Tab>
+  <Tab value="Windows">
+  ```js
+  type "%APPDATA%\Claude\logs\mcp*.log"
+  ```
+  </Tab>
+</Tabs>
+  </Accordion>
+    <Accordion title="工具调用失败">
+   如果 Claude 试图使用工具但失败了：
+   1. 检查 Claude 的日志中是否有错误
+   2. 验证你的 server 构建并运行，没有错误
+   3. 尝试重新启动 Claude for Desktop
+  </Accordion>
+    <Accordion title="这都不起作用。我该怎么办？">
+   请参考我们的调试指南，以获取更详细的调试工具和指导。
+  </Accordion>
+    <Accordion title="ENOENT错误和在Windows上路径中的 `${APPDATA}`">
+    如果你的配置的 server 无法加载，并且在其日志中看到指向路径中的`${APPDATA}`的错误，你可能需要在 claude_desktop_config.json 中的 env 键中添加 %APPDATA% 的扩展值：
+  ```js
+   {
+  "brave-search": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+    "env": {
+      "APPDATA": "C:\\Users\\user\\AppData\\Roaming\\",
+      "BRAVE_API_KEY": "..."
+    }
+  }
+}
+   ```
+   进行此更改后，再次启动 Claude Desktop。
+   <Callout  title="NPM 应该全局安装" type="warn">
+如果你尚未全局安装 NPM，则 npx 命令可能会继续失败。 如果 NPM 已经全局安装，你将找到 %APPDATA%\npm 存在于你的系统中。 如果没有，你可以通过运行以下命令全局安装 NPM：
+```js
+npm install -g npm
+```
+</Callout>
+  </Accordion>
+</Accordions>
+##  下一步
+<Cards>
+  <Card title="探索其他服务器" href="/docs/example-servers" >
+  查看我们的官方MCP服务器库和实现
+  </Card>
+  <Card title="构建自己的服务器" href="/docs/quick-start/server-developers" >
+  现在构建你自己的自定义服务器，以在 Claude for Desktop 和其他客户端中使用
+  </Card>
+</Cards>
