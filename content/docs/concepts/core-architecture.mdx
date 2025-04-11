@@ -1,3 +1,7 @@
+---
+title: 核心架构
+---
+
 # 核心架构
 
 > 了解 MCP 如何连接客户端、服务器和 LLM
@@ -189,7 +193,7 @@ SDK 和应用程序可以定义自己的 -32000 以上的错误代码。
 
 以下是实现 MCP 服务器的一个基本示例：
 
-<Tabs>
+<Tabs items={['TypeScript', 'Python']}>
     <Tab title="TypeScript">
     ```typescript
         import { Server } from "@modelcontextprotocol/sdk/server/index.js";

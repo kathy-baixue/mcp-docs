@@ -1,3 +1,8 @@
+---
+title: 针对服务端开发人员
+description: 快速开始 - 针对服务端开发人员
+---
+
 # 针对服务端开发人员
 
 > 开始构建自己的服务器，以便在Claude中用于Desktop和其他客户端
@@ -245,7 +250,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         例如，如果你有[VS Code](https://code.visualstudio.com/) 安装:
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```bash
                 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -262,21 +267,21 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         然后，您将在“mcpServers”键中添加服务器。如果至少有一台服务器配置正确，MCP UI元素将仅显示在Claude for Desktop中。
         在这种情况下，我们将添加单个天气服务器，如下所示：
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```json Python
                 {
                     "mcpServers": {
-                    "weather": {
-                    "command": "uv",
-                    "args": [
-                    "--directory",
-                    "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather",
-                    "run",
-                    "weather.py"
-                    ]
-                }
-                }
+                        "weather": {
+                            "command": "uv",
+                            "args": [
+                                "--directory",
+                                "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather",
+                                "run",
+                                "weather.py"
+                            ]
+                        }
+                    }
                 }
                 ```
             </Tab>
@@ -285,16 +290,16 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
                 ```json Python
                 {
                     "mcpServers": {
-                    "weather": {
-                    "command": "uv",
-                    "args": [
-                    "--directory",
-                    "C:\\ABSOLUTE\\PATH\\TO\\PARENT\\FOLDER\\weather",
-                    "run",
-                    "weather.py"
-                    ]
-                }
-                }
+                        "weather": {
+                            "command": "uv",
+                            "args": [
+                                "--directory",
+                                "C:\\ABSOLUTE\\PATH\\TO\\PARENT\\FOLDER\\weather",
+                                "run",
+                                "weather.py"
+                            ]
+                        }
+                    }
                 }
                 ```
             </Tab>
@@ -689,7 +694,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         例如，如果你有安装 [VS Code](https://code.visualstudio.com/) :
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```bash
                 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -707,19 +712,19 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         在这种情况下，我们将添加单个天气服务器，如下所示：
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 <CodeGroup>
                     ```json Node
                     {
                         "mcpServers": {
-                        "weather": {
-                        "command": "node",
-                        "args": [
-                        "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/index.js"
-                        ]
-                    }
-                    }
+                            "weather": {
+                                "command": "node",
+                                "args": [
+                                    "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/index.js"
+                                ]
+                            }
+                        }
                     }
                     ```
                 </CodeGroup>
@@ -774,7 +779,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         您需要添加以下依赖项：
 
-        <Tabs>
+        <Tabs items={['Maven', 'Gradle']}>
             <Tab title="Maven">
                 ```xml
                 <dependencies>
@@ -922,7 +927,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         例如，如果你已经安装[VS Code](https://code.visualstudio.com/):
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```bash
                 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -941,7 +946,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         在这种情况下，我们将添加单个天气服务器，如下所示：
 
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```json java
                 {
@@ -1593,7 +1598,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         例如，如果你有[VS代码](https://code.visualstudio.com/)已安装：
 
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```bash
                 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
@@ -1610,7 +1615,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         然后，您将在`mcpServers`键中添加服务器。如果至少有一台服务器配置正确，MCP UI元素将仅显示在Claude for Desktop中。
         在这种情况下，我们将添加单个天气服务器，如下所示：
 
-        <Tabs>
+        <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 ```json
                 {
