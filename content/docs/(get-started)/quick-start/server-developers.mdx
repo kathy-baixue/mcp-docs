@@ -3,6 +3,10 @@ title: 针对服务端开发人员
 description: 快速开始 - 针对服务端开发人员
 ---
 
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
 # 针对服务端开发人员
 
 > 开始构建自己的服务器，以便在Claude中用于Desktop和其他客户端
@@ -39,9 +43,8 @@ MCP服务器可以提供三种主要功能：
 
 本教程将主要关注工具。
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-<Tabs items={['Python', 'Node', 'Java','Kotlin','C#']}>
+<Tab items={['Python', 'Node', 'Java','Kotlin','C#']}>
     <Tab title="Python">
         让我们开始构建我们的天气服务器吧！【你可以在这里找到我们将要构建的完整代码。](https://github.com/modelcontextprotocol/quickstart-resources/tree/main/weather-server-python)
 
@@ -62,13 +65,17 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         首先，让我们安装uv并设置我们的Python项目和环境：
 
         <CodeGroup>
+            <CodeGroupItem title="bash">
             ```bash MacOS/Linux
             curl -LsSf https://astral.sh/uv/install.sh | sh
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="powershell">
             ```powershell Windows
             powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         确保之后重新启动终端，以确保收到uv命令。
@@ -76,6 +83,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         现在，让我们创建并设置我们的项目：
 
         <CodeGroup>
+            <CodeGroupItem title="bash">
             ```bash MacOS/Linux
             # Create a new directory for our project
             uv init weather
@@ -91,7 +99,9 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Create our server file
             touch weather.py
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="powershell">
             ```powershell Windows
             # Create a new directory for our project
             uv init weather
@@ -107,6 +117,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Create our server file
             new-item weather.py
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         现在，让我们开始构建您的服务器。
@@ -350,6 +361,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         现在，让我们创建并设置我们的项目：
 
         <CodeGroup>
+            <CodeGroupItem title="bash">
             ```bash MacOS/Linux
             # Create a new directory for our project
             mkdir weather
@@ -366,7 +378,9 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             mkdir src
             touch src/index.ts
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="powershell">
             ```powershell Windows
             # Create a new directory for our project
             md weather
@@ -383,6 +397,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             md src
             new-item src\index.ts
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         Update your package.json to add type: "module" and a build script:
@@ -715,6 +730,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         <Tabs items={['MacOS/Linux', 'Windows']}>
             <Tab title="MacOS/Linux">
                 <CodeGroup>
+                    <CodeGroupItem title="json">
                     ```json Node
                     {
                         "mcpServers": {
@@ -727,23 +743,27 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
                         }
                     }
                     ```
+                    </CodeGroupItem>
                 </CodeGroup>
+
             </Tab>
 
             <Tab title="Windows">
                 <CodeGroup>
+                    <CodeGroupItem title="json">
                     ```json Node
                     {
                         "mcpServers": {
-                        "weather": {
-                        "command": "node",
-                        "args": [
-                        "C:\\PATH\\TO\\PARENT\\FOLDER\\weather\\build\\index.js"
-                        ]
-                    }
-                    }
+                            "weather": {
+                                "command": "node",
+                                "args": [
+                                    "C:\\PATH\\TO\\PARENT\\FOLDER\\weather\\build\\index.js"
+                                ]
+                            }
+                        }
                     }
                     ```
+                    </CodeGroupItem>
                 </CodeGroup>
             </Tab>
         </Tabs>
@@ -809,11 +829,14 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         然后通过设置应用程序属性来配置应用程序：
 
         <CodeGroup>
+            <CodeGroupItem title="properties">
             ```bash application.properties
             spring.main.bannerMode=off
             logging.pattern.console=
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="yaml">
             ```yaml application.yml
             logging:
               pattern:
@@ -822,6 +845,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
               main:
                 banner-mode: off
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         这个 [服务器配置属性](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-server-boot-starter-docs.html#_configuration_properties) 记录所有可用的属性。
@@ -1049,7 +1073,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         它展示了如何使用Spring Boot的自动配置功能定义和注册MCP工具、资源和提示。
     </Tab>
 
-    <Tab title="Kotlin">
+    < title="Kotlin">
         让我们开始构建我们的天气服务器吧！[你可以在这里找到我们将要构建的完整代码。](https://github.com/modelcontextprotocol/kotlin-sdk/tree/main/samples/weather-stdio-server)
 
         ### 必备知识
@@ -1078,6 +1102,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         现在，让我们创建并设置您的项目：
 
         <CodeGroup>
+            <CodeGroupItem title="bash">
             ```bash MacOS/Linux
             # Create a new directory for our project
             mkdir weather
@@ -1086,7 +1111,9 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Initialize a new kotlin project
             gradle init
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="powershell">
             ```powershell Windows
             # Create a new directory for our project
             md weather
@@ -1095,6 +1122,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Initialize a new kotlin project
             gradle init
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         运行`gradle init`后，您将看到创建项目的选项。
@@ -1104,6 +1132,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         或者，您可以使用[IntelliJ IDEA项目向导]创建Kotlin应用程序(https://kotlinlang.org/docs/jvm-get-started.html).
 
         <CodeGroup>
+            <CodeGroupItem title="Kotlin DSL">
             ```kotlin build.gradle.kts
             val mcpVersion = "0.4.0"
             val slf4jVersion = "2.0.9"
@@ -1116,7 +1145,9 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
         }
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="Groovy">
             ```groovy build.gradle
             def mcpVersion = '0.3.0'
             def slf4jVersion = '2.0.9'
@@ -1129,24 +1160,29 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             implementation "io.ktor:ktor-serialization-kotlinx-json:$ktorVersion"
         }
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         此外，将以下插件添加到您的构建脚本中：
 
         <CodeGroup>
+            <CodeGroupItem title="Kotlin DSL">
             ```kotlin build.gradle.kts
             plugins {
-            kotlin("plugin.serialization") version "your_version_of_kotlin"
-            id("com.github.johnrengelman.shadow") version "8.1.1"
-        }
+                kotlin("plugin.serialization") version "your_version_of_kotlin"
+                id("com.github.johnrengelman.shadow") version "8.1.1"
+            }
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="Groovy">
             ```groovy build.gradle
             plugins {
-            id 'org.jetbrains.kotlin.plugin.serialization' version 'your_version_of_kotlin'
-            id 'com.github.johnrengelman.shadow' version '8.1.1'
-        }
+                id 'org.jetbrains.kotlin.plugin.serialization' version 'your_version_of_kotlin'
+                id 'com.github.johnrengelman.shadow' version '8.1.1'
+            }
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         现在，让我们开始构建您的服务器。
@@ -1221,204 +1257,212 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             }
         }
 
+        @Serializable
+        data class Points(
+            val properties: Properties
+        ) {
             @Serializable
-            data class Points(
+            data class Properties(val forecast: String)
+        }
+
+        @Serializable
+        data class Forecast(
+            val properties: Properties
+        ) {
+        @Serializable
+            data class Properties(val periods: List<Period>)
+
+            @Serializable
+            data class Period(
+                val number: Int, val name: String, val startTime: String, val endTime: String,
+                val isDaytime: Boolean, val temperature: Int, val temperatureUnit: String,
+                val temperatureTrend: String, val probabilityOfPrecipitation: JsonObject,
+                val windSpeed: String, val windDirection: String,
+                val shortForecast: String, val detailedForecast: String,
+            )
+        }
+
+        @Serializable
+        data class Alert(
+            val features: List<Feature>
+        ) {
+            @Serializable
+            data class Feature(
                 val properties: Properties
-            ) {
-                @Serializable
-                data class Properties(val forecast: String)
-            }
+            )
 
             @Serializable
-            data class Forecast(
-                val properties: Properties
-            ) {
-            @Serializable
-                data class Properties(val periods: List<Period>)
+            data class Properties(
+                val event: String, val areaDesc: String, val severity: String,
+                val description: String, val instruction: String?,
+            )
+        }
+        ```
 
-                @Serializable
-                data class Period(
-                    val number: Int, val name: String, val startTime: String, val endTime: String,
-                    val isDaytime: Boolean, val temperature: Int, val temperatureUnit: String,
-                    val temperatureTrend: String, val probabilityOfPrecipitation: JsonObject,
-                    val windSpeed: String, val windDirection: String,
-                    val shortForecast: String, val detailedForecast: String,
+        ### 执行工具
+
+        工具执行处理程序负责实际执行每个工具的逻辑。让我们添加它：
+
+
+        ```kotlin
+        // Create an HTTP client with a default request configuration and JSON content negotiation
+        val httpClient = HttpClient {
+            defaultRequest {
+            url("https://api.weather.gov")
+            headers {
+                append("Accept", "application/geo+json")
+                append("User-Agent", "WeatherApiClient/1.0")
+        }
+            contentType(ContentType.Application.Json)
+        }
+            // Install content negotiation plugin for JSON serialization/deserialization
+            install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
+        }
+
+        // Register a tool to fetch weather alerts by state
+        server.addTool(
+            name = "get_alerts",
+            description = """
+                Get weather alerts for a US state. Input is Two-letter US state code (e.g. CA, NY)
+            """.trimIndent(),
+            inputSchema = Tool.Input(
+                properties = buildJsonObject {
+                    putJsonObject("state") {
+                        put("type", "string")
+                        put("description", "Two-letter US state code (e.g. CA, NY)")
+                    }
+                },
+                required = listOf("state")
+            )
+        ) { request ->
+            val state = request.arguments["state"]?.jsonPrimitive?.content
+            if (state == null) {
+                return@addTool CallToolResult(
+                    content = listOf(TextContent("The 'state' parameter is required."))
                 )
             }
 
-            @Serializable
-            data class Alert(
-                val features: List<Feature>
-            ) {
-                @Serializable
-                data class Feature(
-                    val properties: Properties
-                )
+            val alerts = httpClient.getAlerts(state)
 
-                @Serializable
-                data class Properties(
-                    val event: String, val areaDesc: String, val severity: String,
-                    val description: String, val instruction: String?,
-                )
-            }
-                ```
+            CallToolResult(content = alerts.map { TextContent(it) })
+        }
 
-            ### 执行工具
-
-            工具执行处理程序负责实际执行每个工具的逻辑。让我们添加它：
-
-
-            ```kotlin
-            // Create an HTTP client with a default request configuration and JSON content negotiation
-            val httpClient = HttpClient {
-                defaultRequest {
-                url("https://api.weather.gov")
-                headers {
-                    append("Accept", "application/geo+json")
-                    append("User-Agent", "WeatherApiClient/1.0")
-            }
-                contentType(ContentType.Application.Json)
-            }
-                // Install content negotiation plugin for JSON serialization/deserialization
-                install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) }
-            }
-
-            // Register a tool to fetch weather alerts by state
+            // Register a tool to fetch weather forecast by latitude and longitude
             server.addTool(
-                name = "get_alerts",
+                name = "get_forecast",
                 description = """
-                    Get weather alerts for a US state. Input is Two-letter US state code (e.g. CA, NY)
+                    Get weather forecast for a specific latitude/longitude
                 """.trimIndent(),
                 inputSchema = Tool.Input(
                     properties = buildJsonObject {
-                        putJsonObject("state") {
-                            put("type", "string")
-                            put("description", "Two-letter US state code (e.g. CA, NY)")
-                        }
-                    },
-                    required = listOf("state")
+                        putJsonObject("latitude") { put("type", "number") }
+                        putJsonObject("longitude") { put("type", "number") }
+                },
+                    required = listOf("latitude", "longitude")
                 )
             ) { request ->
-                val state = request.arguments["state"]?.jsonPrimitive?.content
-                if (state == null) {
-                    return@addTool CallToolResult(
-                        content = listOf(TextContent("The 'state' parameter is required."))
-                    )
+            val latitude = request.arguments["latitude"]?.jsonPrimitive?.doubleOrNull
+            val longitude = request.arguments["longitude"]?.jsonPrimitive?.doubleOrNull
+            if (latitude == null || longitude == null) {
+                return@addTool CallToolResult(
+                    content = listOf(TextContent("The 'latitude' and 'longitude' parameters are required."))
+                )
+        }
+
+            val forecast = httpClient.getForecast(latitude, longitude)
+
+            CallToolResult(content = forecast.map { TextContent(it) })
+        }
+        ```
+
+        ### 运行服务
+
+        最后，实现运行服务器的主要功能：
+
+        ```kotlin
+        fun main() = `run mcp server`()
+        ```
+
+        一定要跑`/gradlew build`来构建你的服务器。这是让服务器连接的一个非常重要的步骤。
+
+        现在让我们从现有的MCP主机Claude for Desktop测试您的服务器。
+
+        ## 使用Claude for Desktop测试您的服务器
+
+        <Note>
+            Claude for Desktop尚未在Linux上可用。Linux用户可以继续学习[构建客户端]（https://mcp.thinkinai.xyz/docs/quick-start/client-developers）教程，以构建一个连接到我们刚刚构建的服务器的MCP客户端。
+        </Note>
+
+        首先，确保您安装了Claude for Desktop。[您可以安装最新版本在这里。](https://claude.ai/download)如果您已经拥有Claude for Desktop，**请确保它已更新到最新版本**
+
+        我们需要为您想要使用的任何MCP服务器配置Claude for Desktop。
+        `~/Library/ApplicationSupport/Claude/Claude_Desktop_config.json`的Claude for Desktop App配置。
+
+        如果文件不存在，请确保创建该文件。
+
+        例如，如果你有[VS code](https://code.visualstudio.com/)已安装：
+
+        <CodeGroup>
+            <CodeGroupItem title="JSON">
+            ```bash MacOS/Linux
+            code ~/Library/Application\ Support/Claude/claude_desktop_config.json
+            ```
+            </CodeGroupItem>
+
+            <CodeGroupItem title="PowerShell">
+            ```powershell Windows
+            code $env:AppData\Claude\claude_desktop_config.json
+            ```
+            </CodeGroupItem>
+        </CodeGroup>
+
+        然后，您将在`mcpServers`键中添加服务器。
+
+        如果至少有一台服务器配置正确，MCP UI元素将仅显示在Claude for Desktop中。
+
+        在这种情况下，我们将添加单个天气服务器，如下所示：
+
+        <CodeGroup>
+            <CodeGroupItem title="JSON">
+            ```json MacOS/Linux
+            {
+                "mcpServers": {
+                    "weather": {
+                        "command": "java",
+                        "args": [
+                            "-jar",
+                            "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/libs/weather-0.1.0-all.jar"
+                        ]
+                    }
                 }
-
-                val alerts = httpClient.getAlerts(state)
-
-                CallToolResult(content = alerts.map { TextContent(it) })
             }
+            ```
+            </CodeGroupItem>
 
-                // Register a tool to fetch weather forecast by latitude and longitude
-                server.addTool(
-                    name = "get_forecast",
-                    description = """
-                        Get weather forecast for a specific latitude/longitude
-                    """.trimIndent(),
-                    inputSchema = Tool.Input(
-                        properties = buildJsonObject {
-                            putJsonObject("latitude") { put("type", "number") }
-                            putJsonObject("longitude") { put("type", "number") }
-                    },
-                        required = listOf("latitude", "longitude")
-                    )
-                ) { request ->
-                val latitude = request.arguments["latitude"]?.jsonPrimitive?.doubleOrNull
-                val longitude = request.arguments["longitude"]?.jsonPrimitive?.doubleOrNull
-                if (latitude == null || longitude == null) {
-                    return@addTool CallToolResult(
-                        content = listOf(TextContent("The 'latitude' and 'longitude' parameters are required."))
-                    )
-            }
-
-                val forecast = httpClient.getForecast(latitude, longitude)
-
-                CallToolResult(content = forecast.map { TextContent(it) })
-            }
-                ```
-
-                ### 运行服务
-
-                最后，实现运行服务器的主要功能：
-
-                ```kotlin
-                fun main() = `run mcp server`()
-                ```
-
-                一定要跑`/gradlew build`来构建你的服务器。这是让服务器连接的一个非常重要的步骤。
-
-                现在让我们从现有的MCP主机Claude for Desktop测试您的服务器。
-
-                ## 使用Claude for Desktop测试您的服务器
-
-                <Note>
-                    Claude for Desktop尚未在Linux上可用。Linux用户可以继续学习[构建客户端]（https://mcp.thinkinai.xyz/docs/quick-start/client-developers）教程，以构建一个连接到我们刚刚构建的服务器的MCP客户端。
-                </Note>
-
-                首先，确保您安装了Claude for Desktop。[您可以安装最新版本在这里。](https://claude.ai/download)如果您已经拥有Claude for Desktop，**请确保它已更新到最新版本**
-
-                我们需要为您想要使用的任何MCP服务器配置Claude for Desktop。
-                `~/Library/ApplicationSupport/Claude/Claude_Desktop_config.json`的Claude for Desktop App配置。
-
-                如果文件不存在，请确保创建该文件。
-
-                例如，如果你有[VS code](https://code.visualstudio.com/)已安装：
-
-                <CodeGroup>
-                    ```bash MacOS/Linux
-                    code ~/Library/Application\ Support/Claude/claude_desktop_config.json
-                    ```
-
-                    ```powershell Windows
-                    code $env:AppData\Claude\claude_desktop_config.json
-                    ```
-                </CodeGroup>
-
-                然后，您将在`mcpServers`键中添加服务器。
-
-                如果至少有一台服务器配置正确，MCP UI元素将仅显示在Claude for Desktop中。
-
-                在这种情况下，我们将添加单个天气服务器，如下所示：
-
-                <CodeGroup>
-                    ```json MacOS/Linux
-                    {
-                        "mcpServers": {
-                            "weather": {
-                                "command": "java",
-                                "args": [
-                                    "-jar",
-                                    "/ABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/libs/weather-0.1.0-all.jar"
-                                ]
-                            }
-                        }
+            <CodeGroupItem title="JSON">
+            ```json Windows
+            {
+                "mcpServers": {
+                    "weather": {
+                        "command": "java",
+                        "args": [
+                            "-jar",
+                            "C:\\PATH\\TO\\PARENT\\FOLDER\\weather\\build\\libs\\weather-0.1.0-all.jar"
+                        ]
                     }
-                    ```
+                }
+            }
+            ```
+            </CodeGroupItem>
+        </CodeGroup>
 
-                    ```json Windows
-                    {
-                        "mcpServers": {
-                            "weather": {
-                                "command": "java",
-                                "args": [
-                                    "-jar",
-                                    "C:\\PATH\\TO\\PARENT\\FOLDER\\weather\\build\\libs\\weather-0.1.0-all.jar"
-                                ]
-                            }
-                        }
-                    }
-                    ```
-                </CodeGroup>
+        这将告诉Claude for Desktop:
 
-                这将告诉Claude for Desktop:
+        1.有一个名为“天气”的MCP服务器
 
-                1.有一个名为“天气”的MCP服务器
+        2.通过运行`java-jar/AABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/libs/weather-0.1.0-all.jar启动它`
 
-                2.通过运行`java-jar/AABSOLUTE/PATH/TO/PARENT/FOLDER/weather/build/libs/weather-0.1.0-all.jar启动它`
-
-                保存文件，然后重新启动**Claude for Desktop**。
+        保存文件，然后重新启动**Claude for Desktop**。
     </Tab>
 
     <Tab title="C#">
@@ -1447,6 +1491,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
         现在，让我们创建并设置您的项目：
 
         <CodeGroup>
+            <CodeGroupItem title="Bash">
             ```bash MacOS/Linux
             # Create a new directory for our project
             mkdir weather
@@ -1454,7 +1499,9 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Initialize a new C# project
             dotnet new console
             ```
+            </CodeGroupItem>
 
+            <CodeGroupItem title="PowerShell">
             ```powershell Windows
             # Create a new directory for our project
             mkdir weather
@@ -1462,6 +1509,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
             # Initialize a new C# project
             dotnet new console
             ```
+            </CodeGroupItem>
         </CodeGroup>
 
         运行`dotnetnew console `后，您将看到一个新的C#项目。
@@ -1709,7 +1757,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
 ## 故障排除
 
-<AccordionGroup>
+<Accordions  type="multiple">
     <Accordion title="Claude桌面集成问题">
         **从Claude获取桌面日志**
 
@@ -1772,7 +1820,7 @@ import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
         这不是一个错误，只是意味着该州目前没有天气警报。尝试不同的状态或在恶劣天气下检查。
     </Accordion>
-</AccordionGroup>
+</Accordions>
 
 <Note>
     有关更高级的故障排除，请查看我们的[调试MCP]指南（https://mcp.thinkinai.xyz/docs/tutorials/debugging）
